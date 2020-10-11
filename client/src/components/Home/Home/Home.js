@@ -11,7 +11,7 @@ import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
     return (
-        <div>
+        <div style={{overflowX: 'hidden'}}>
             <Header></Header>
             <Services></Services>
             <FeaturedService></FeaturedService>

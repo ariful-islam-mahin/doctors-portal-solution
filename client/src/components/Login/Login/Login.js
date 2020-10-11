@@ -8,9 +8,9 @@ import LoginBg from '../../../images/loginBg.png';
 
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  const history = useHistory();
-  const location = useLocation();
-  const { from } = location.state || { from: { pathname: "/" } };
+  // const history = useHistory();
+  // const location = useLocation();
+  // const { from } = location.state || { from: { pathname: "/" } };
 
   if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
@@ -18,12 +18,17 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function (result) {
+    firebase.auth().signInWithPopup(provider)
+    .then(function (result) {
       const { displayName, email } = result.user;
       const signedInUser = { name: displayName, email }
       setLoggedInUser(signedInUser);
       storeAuthToken();
-    }).catch(function (error) {
+      if(result){
+        alert('user logged in successfully')
+      }
+    })
+    .catch(function (error) {
       const errorMessage = error.message;
       console.log(errorMessage);
     });
@@ -33,7 +38,6 @@ const Login = () => {
     firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
       .then(function (idToken) {
         sessionStorage.setItem('token', idToken);
-        history.replace(from);
       }).catch(function (error) {
         // Handle error
       });
