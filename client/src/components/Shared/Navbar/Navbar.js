@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -10,22 +11,22 @@ const Navbar = () => {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link mr-5" href="#">Home <span class="sr-only">(current)</span></a>
+                    <Link class="nav-link mr-5" to="/home">Home <span class="sr-only">(current)</span></Link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5" href="#">About</a>
+                    <Link class="nav-link mr-5" to="/">Patient</Link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5" href="#">Dental Services</a>
+                    <Link class="nav-link mr-5" to="/dashboard">Dashboard</Link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5 text-white" href="#">Reviews</a>
+                    <Link class={`nav-link mr-5 ${window.location.pathname === '/appointment' ? 'text-secondary' : 'text-white'}`}to="/admin">Admin</Link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5 text-white" href="#">Blogs</a>
+                    <Link class={`nav-link mr-5 ${window.location.pathname === '/appointment' ? 'text-secondary' : 'text-white'}`} to="/">Blogs</Link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5 text-white" href="#">Contact Us</a>
+                    <Link class={`nav-link mr-5 ${window.location.pathname === '/appointment' ? 'text-secondary' : 'text-white'}`} to="/">Contact Us</Link>
                 </li>
                 </ul>
             </div>
